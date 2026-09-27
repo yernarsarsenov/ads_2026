@@ -16,6 +16,8 @@ int solve(int &n, int &h, vector<int> &arr) {
         else 
             l = mid+1;
     }
+
+    return ans;
 }
 
 int main() {
