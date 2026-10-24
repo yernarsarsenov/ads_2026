@@ -86,34 +86,34 @@ void clear(Node *&head, Node *&tail) {
 
 int main() {
 
-    string com, s;
+    string oper, s;
     Node *head = nullptr, *tail = nullptr;
 
-    while (cin >> com) {
-        if (com == "add_front") {
+    while (cin >> oper) {
+        if (oper == "add_front") {
             cin >> s;
             add_front(head, tail, s);
         } 
-        else if (com == "add_back") {
+        else if (oper == "add_back") {
             cin >> s;
             add_back(head, tail, s);
         } 
-        else if (com == "erase_front") {
+        else if (oper == "erase_front") {
             erase_front(head, tail);
         } 
-        else if (com == "erase_back") {
+        else if (oper == "erase_back") {
             erase_back(head, tail);
         } 
-        else if (com == "front") {
+        else if (oper == "front") {
             front(head);
         } 
-        else if (com == "back") {
+        else if (oper == "back") {
             back(tail);
         } 
-        else if (com == "clear") {
+        else if (oper == "clear") {
             clear(head, tail);
         } 
-        else if (com == "exit") {
+        else if (oper == "exit") {
             cout << "goodbye";
             break;
         }
