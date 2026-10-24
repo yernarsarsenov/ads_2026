@@ -45,38 +45,33 @@ int main() {
         }
     }
 
-    vector<int> ans;
+    Node dummy(0);
+    Node *tail = &dummy;
 
-    Node *temp1 = head1, *temp2 = head2;
-    while(temp1 != nullptr && temp2 != nullptr) {
-        int d1 = temp1->data;
-        int d2 = temp2->data;
-        if(d1 < d2) {
-            ans.push_back(d1);
-            temp1 = temp1->next;
-        }
-        else if(d2 < d1) {
-            ans.push_back(d2);
-            temp2 = temp2->next;
+    Node *p1 = head1;
+    Node *p2 = head2;
+
+    while(p1 != nullptr && p2 != nullptr) {
+        if(p1->data <= p2->data) {
+            tail->next = p1;
+            p1 = p1->next;
         }
         else {
-            ans.push_back(d1); ans.push_back(d2);
-            temp1 = temp1->next; temp2 = temp2->next;
+            tail->next = p2;
+            p2 = p2->next;
         }
+        tail = tail->next;
     }
 
-    while(temp1 != nullptr) {
-        ans.push_back(temp1->data);
-        temp1 = temp1->next;
-    }
+    if(p1 != nullptr) tail->next = p1;
+    else tail->next = p2;
 
-    while(temp2 != nullptr) {
-        ans.push_back(temp2->data);
-        temp2 = temp2->next;
-    }
+    Node *out = dummy.next;
 
-    for(int &a : ans)
-        cout << a << " ";
+    while(out != nullptr) {
+        cout << out->data << " ";
+        out = out->next;
+    }
 
     return 0;
 }

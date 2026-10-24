@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
+class Node {
+    public:
     int val;
-    Node* next;
-    Node(): val(0), next(nullptr) {}
-    Node(int x): val(x), next(nullptr) {}
-    Node(Node* next): val(0), next(next) {}
-    Node(int x, Node* next): val(x), next(next) {}
+    Node *next;
+
+    Node (int val) {
+        this->val = val;
+        this->next = nullptr;
+    }
 };
 
 Node* insert(Node* head, Node* node, int p) {
