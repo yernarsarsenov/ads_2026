@@ -2,53 +2,26 @@
 #define ll long long
 using namespace std;
 
-const ll MOD = 1e9 + 7;
-
-ll get_hash(string s) {
-    ll res = 0;
-    ll power = 1;
-    for(char &ch : s) {
-        ll val = (ch - 47) * power % MOD;
-        res = (res + val) % MOD;
-        power = (power * 11) % MOD;
-    }
-    return res % MOD;
-}
+const ll M = 1e9 + 7;
 
 int main() {
 
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int n;
-    string x;
+    int n; 
     cin >> n;
-    unordered_set<string> uniq;
-    unordered_map<string, string> res;
-    vector<string> order;
     
+    vector<string> a(2 * n);
+    for (string &x : a) cin >> x;
+    unordered_set<string> s(a.begin(), a.end());
 
-    int loop = 2*n;
-    for(int i = 0; i < loop; i++) {
-        cin >> x;
-        order.push_back(x);
-        uniq.emplace(x);
-    }
-
-    for(auto it = uniq.begin(); it != uniq.end(); it++) {
-        ll temp = get_hash(*it);
-        if(uniq.count(to_string(temp))) {
-            res[*it] = to_string(temp);
+    for (string &x : a) {
+        long long h = 0, p = 1;
+        for (char c : x) {
+            h = (h + (c - 47) * p) % M;
+            p = p * 11 % M;
+        }
+        if (s.count(to_string(h))) {
+            cout << "Hash of string \"" << x << "\" is " << h << "\n";
+            if (--n == 0) break;
         }
     }
-
-    unordered_set<string> printed;
-    for(string &s : order) {
-        if(res.count(s)) {
-            cout << "Hash of string \"" << s << "\" is " << res[s] << "\n";
-            printed.emplace(s);
-        }
-    }
-
-    return 0;
 }
