@@ -20,17 +20,17 @@ vector<int> pi_build(string s) {
     return pi;
 }
 
-void kmp(string text, string pat) {
-    string s = pat + '#' + text;
-    vector<int> pi = pi_build(s), ans;
+int patt_in_rot(string text, string pat) {
+    string doubled = text + text, s = pat + '#' + doubled;
+    vector<int> pi = pi_build(s);
     int n = s.size(), m = pat.size();
 
     for(int i = m + 1; i < n; i++) {
         if(pi[i] == m)
-            ans.push_back(i - 2 * m);
+            return i-2*m;
     }
 
-    for(int &a : ans) cout << a << " ";
+    return -1;
 }
 
 int main() {
@@ -38,7 +38,7 @@ int main() {
     string a, b;
     cin >> a >> b;
 
-    kmp(a, b);
+    cout << patt_in_rot(b, a);
 
     return 0;
 }
